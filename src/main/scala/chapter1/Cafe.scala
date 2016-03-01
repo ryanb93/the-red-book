@@ -1,9 +1,7 @@
 package chapter1
 
 case class Coffee(price: Double)
-
 case class CreditCard(number: String)
-
 case class Order(coffees: List[Coffee], charge: Charge)
 
 case class Charge(cc: CreditCard, amount: Double) {
