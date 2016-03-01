@@ -21,7 +21,7 @@ class Cafe {
     Order(List(cup), Charge(cc, cup.price))
   }
 
-  def buyCoffees(cc: CreditCard, cups: List[Coffee]): Order = {
+  def buyCoffee(cc: CreditCard, cups: List[Coffee]): Order = {
     val orders = cups.map(cup => buyCoffee(cc, cup))
     val charge = orders.map(_.charge).reduce((c1, c2) => c1.combine(c2))
     Order(cups, charge)

@@ -16,7 +16,7 @@ class CafeSpec extends FlatSpec with Matchers {
 
   it should "be able to buy multiple cups of coffee" in {
     val cups = List(Coffee(3.50), Coffee(4.00), Coffee(5.00))
-    val order = cafe.buyCoffees(cc, cups)
+    val order = cafe.buyCoffee(cc, cups)
     order.charge.amount shouldBe 12.50
     order.coffees.size shouldBe 3
   }
