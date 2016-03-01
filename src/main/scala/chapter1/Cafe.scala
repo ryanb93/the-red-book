@@ -14,18 +14,8 @@ case class Charge(cc: CreditCard, amount: Double) {
 }
 
 class Cafe {
-
   def coalesce(charges: List[Charge]): List[Charge] = charges.groupBy(_.cc).values.map(_.reduce(_ combine _)).toList
-
-  def buyCoffee(cc: CreditCard, cup: Coffee): Order = {
-    Order(List(cup), Charge(cc, cup.price))
-  }
-
-  def buyCoffee(cc: CreditCard, cups: List[Coffee]): Order = {
-    val orders = cups.map(cup => buyCoffee(cc, cup))
-    val charge = orders.map(_.charge).reduce((c1, c2) => c1.combine(c2))
-    Order(cups, charge)
-  }
-
+  def generateOrder(cc: CreditCard, cup: Coffee): Order = Order(List(cup), Charge(cc, cup.price))
+  def generateOrder(cc: CreditCard, cups: List[Coffee]): Order = Order(cups, cups.map(generateOrder(cc, _).charge).reduce(_ combine _))
 }
 
