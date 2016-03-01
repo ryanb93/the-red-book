@@ -11,7 +11,7 @@ case class Charge(cc: CreditCard, amount: Double) {
   }
 }
 
-class Cafe {
+object Cafe {
   def coalesce(charges: List[Charge]): List[Charge] = charges.groupBy(_.cc).values.map(_.reduce(_ combine _)).toList
   def generateOrder(cc: CreditCard, cup: Coffee): Order = Order(List(cup), Charge(cc, cup.price))
   def generateOrder(cc: CreditCard, cups: List[Coffee]): Order = Order(cups, cups.map(generateOrder(cc, _).charge).reduce(_ combine _))
