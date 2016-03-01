@@ -8,11 +8,17 @@ class CafeSpec extends FlatSpec with Matchers {
   val cc = CreditCard("4751290023458765")
 
   "A Cafe" should "buy a single cup of coffee" in {
-    cafe.buyCoffee(cc)._2.amount shouldBe 3.50
+    val cup = Coffee(3.50)
+    val order = cafe.buyCoffee(cc, cup)
+    order.charge.amount shouldBe 3.50
+    order.coffees.size shouldBe 1
   }
 
   it should "be able to buy multiple cups of coffee" in {
-    cafe.buyCoffees(cc, 2)._2.amount shouldBe 7.00
+    val cups = List(Coffee(3.50), Coffee(4.00), Coffee(5.00))
+    val order = cafe.buyCoffees(cc, cups)
+    order.charge.amount shouldBe 12.50
+    order.coffees.size shouldBe 3
   }
 
 }
