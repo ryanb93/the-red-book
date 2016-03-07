@@ -5,10 +5,14 @@ import chapter2.Exercise2_3._
 
 class Exercise2_3Spec extends FlatSpec with Matchers {
 
-  def addString = curry[Int, Int, String]((x, y) => s"x+y: ${x+y}")
+  "curry" should "correctly curry a function" in {
 
-  def addTo5String = addString(5)
+      def addString = curry[Int, Int, String]((x, y) => s"x+y: ${x + y}")
 
-  addTo5String(6) shouldBe "x+y: 11"
+      def addTo5String = addString(5)
+
+      addTo5String(6) shouldBe "x+y: 11"
+
+  }
 
 }

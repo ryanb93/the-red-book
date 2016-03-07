@@ -6,10 +6,13 @@ import org.scalatest.{Matchers, FlatSpec}
 
 class Exercise2_4Spec extends FlatSpec with Matchers {
 
-  def curryString = curry[Int, Int, String]((x, y) => s"x+y: ${x+y}")
+  "uncurry" should "correctly uncurry a function" in {
 
-  def printAdd = uncurry[Int, Int, String](curryString)
+    def curryString = curry[Int, Int, String]((x, y) => s"x+y: ${x + y}")
 
-  printAdd(3, 5) shouldBe "x+y: 8"
+    def printAdd = uncurry[Int, Int, String](curryString)
+
+    printAdd(3, 5) shouldBe "x+y: 8"
+  }
 
 }
